@@ -1,3 +1,12 @@
+                local hook = game:GetService("Players").LocalPlayer.Kick;
+                local mt = getrawmetatable(game:GetService("Players").LocalPlayer)
+                local psuedoEnv = {
+                    ["__index"] = mt.__index,
+                    ["__namecall"] = mt.__namecall
+                }
+                local ReturnFunc = function()end
+                        
+                print("Credits to whoever discovered that -  AntiKick") -- remove this if you want, just dont claim it as yours ty
                 setreadonly(mt, false)
                 mt.__namecall = newcclosure(function(self, Index, ...)
                     local NameCallMethod = getnamecallmethod()
@@ -20,4 +29,3 @@
                     return psuedoEnv.__index(self, Index, ...)
                 end)
                 setreadonly(mt, true)
-            end)
